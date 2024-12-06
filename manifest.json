@@ -1,0 +1,41 @@
+{
+    "manifest_version": 3,
+    "name": "leetcode-flagger",
+    "version": "0.0.1",
+    "description": "Extension to flag leetcode that can be used",
+    "host_permissions": [
+        "https://leetcode.com/*"
+    ],
+    "permissions": ["storage", "tabs", "scripting", "activeTab"],
+    "action": {
+        "default_icon": {
+            "16": "asset/code.png",
+            "24": "asset/code.png",
+            "32": "asset/code.png",
+            "48": "asset/code.png"
+        },
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "src/background/index.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://leetcode.com/*",
+                "https://*.leetcode.com/*"
+            ],
+            "js": ["src/script/contentScript.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "asset/*"
+            ],
+            "matches": [
+                "https://leetcode.com/*"
+            ]
+        }
+    ]
+}
